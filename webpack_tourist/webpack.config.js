@@ -23,6 +23,7 @@ module.exports = {
             errors: true,
             warnings: true,
         },
+        hotOnly: true,
     },
     devtool: 'source-map',
     performance: {
@@ -31,7 +32,9 @@ module.exports = {
         maxAssetSize: 450000,
     },
     entry: {
-        app: PATHS.app,
+        // app: PATHS.app,
+        index: './app/index.js',
+        second: './app/second.js',
         vendor: ['react'],
     },
     output: {
@@ -65,14 +68,15 @@ module.exports = {
         ],
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            title: 'html-demo',
-        }),
+        // new HtmlWebpackPlugin({
+        //     title: 'html-demo',
+        // }),
         plugin,
         new BabiliWebpackPlugin(),
         new webpack.optimize.CommonsChunkPlugin({
             name:'vendor',
         }),
+        new webpack.HotModuleReplacementPlugin(), // HMR --hot
     ],
 };
 
